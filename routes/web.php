@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/workers', function () {
-    return 'Урок 1';
-});
+Route::get('/workers/show', [\App\Http\Controllers\WorkerController::class, 'index']);
+
+Route::get('/workers/show', [\App\Http\Controllers\WorkerController::class, 'show']);
