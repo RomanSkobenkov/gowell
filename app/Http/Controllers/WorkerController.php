@@ -8,6 +8,8 @@ class WorkerController extends Controller
 {
     public function index()
     {
+        phpinfo();
+        die();
         return 'indexAction';
     }
     public function show()
