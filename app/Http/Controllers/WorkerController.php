@@ -7,17 +7,16 @@ use Illuminate\Http\Request;
 
 class WorkerController extends Controller
 {
-public function index()
-{
-    $workers = Worker::all();
-    foreach ($workers as $worker) {
-        dump($worker->name);
-    }
-}
-
-    public function show()
+    public function index()
     {
-        return 'showAction';
+        $workers = Worker::all();
+
+        return view('worker.index', compact('workers'));
+    }
+
+    public function show(Worker $worker)
+    {
+        return view('worker.show', compact('worker'));
     }
 
     public function create()
