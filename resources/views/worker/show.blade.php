@@ -9,7 +9,6 @@
 </head>
 <body>
     Index Page
-
 <div>
     <hr>
     <div>

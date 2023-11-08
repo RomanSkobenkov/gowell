@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Worker\StoreRequest;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
@@ -21,18 +22,20 @@ class WorkerController extends Controller
 
     public function create()
     {
-        $worker = [
-            'name' => 'Mark',
-            'surname' => 'Markov',
-            'email' => 'markov@mail.ru',
-            'age' => 20,
-            'description' => 'This is Mark',
-            'is_married' => false,
-        ];
+        return view('worker.create');
+    }
 
-        Worker::create($worker);
+    public function store(StoreRequest $request)
+    {
+        $data = $request->validated();
 
-        return 'Mark was created';
+        // дополнительная обработка чекбокса
+        $data['is_married'] = isset($data['is_married']);
+        
+        // можем так сделать, потому что ключи нашего массива совпадают с ключами таблицы
+        Worker::create($data);
+
+        return redirect()->route('worker.index');
     }
 
     public function update()
