@@ -7,6 +7,7 @@ export default {
     data() {
         return {
             name: 'Test',
+            job: this.name + ' работает в булочной',
             age: 20,
             arr: [
                 1, 2, 55
@@ -26,6 +27,13 @@ export default {
         }
     },
 
+    computed: {
+        vasyaJob() {
+            return this.name + ' работает в булочной'
+        }
+
+    },
+
     components: {
         SinglePostComponent
     }
@@ -36,6 +44,7 @@ export default {
     <div>
         <single-post-component></single-post-component>
         <p>Name: {{ name }}</p>
+        <p>Job: {{ vasyaJob }}</p>
         <button onclick="sayHello">Hello</button>
         <button @click="sayHi">Hi</button>
     </div>
