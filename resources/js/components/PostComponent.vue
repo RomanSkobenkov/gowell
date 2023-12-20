@@ -1,5 +1,7 @@
-<script setup>
-
+<script>
+    export default {
+        name: "PostComponent"
+    }
 </script>
 
 <template>
