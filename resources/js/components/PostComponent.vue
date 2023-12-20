@@ -6,15 +6,23 @@ export default {
 
     data() {
         return {
-            name: 'Test',
-            job: this.name + ' работает в булочной',
-            age: 20,
-            arr: [
-                1, 2, 55
-            ],
-            someObj: {
-                test: 'test'
-            }
+            persons: [
+                {
+                    name: 'Вася',
+                    age: 20,
+                    job: 'coach'
+                },
+                {
+                    name: 'Елена',
+                    age: 17,
+                    job: 'rest'
+                },
+                {
+                    name: 'Пётр',
+                    age: 34,
+                    job: 'seller'
+                },
+            ]
         }
     },
 
@@ -41,12 +49,10 @@ export default {
 </script>
 
 <template>
-    <div>
-        <single-post-component></single-post-component>
-        <p>Name: {{ name }}</p>
-        <p>Job: {{ vasyaJob }}</p>
-        <button onclick="sayHello">Hello</button>
-        <button @click="sayHi">Hi</button>
+    <div v-for="person in persons">
+        <div>{{ person.name }}</div>
+        <div>{{ person.age }}</div>
+        <div>{{ person.job }}</div>
     </div>
 </template>
 
