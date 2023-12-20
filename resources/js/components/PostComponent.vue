@@ -1,12 +1,18 @@
 <script>
-    export default {
-        name: "PostComponent"
+import SinglePostComponent from "./SinglePostComponent.vue";
+
+export default {
+    name: "PostComponent",
+    components: {
+        SinglePostComponent
     }
+}
 </script>
 
 <template>
     <div>
-        11111111111111111
+        <single-post-component></single-post-component>
+        <SinglePostComponent></SinglePostComponent>
     </div>
 </template>
 
