@@ -6,59 +6,26 @@ export default {
 
     data() {
         return {
-            persons: [
-                {
-                    id: 1,
-                    name: 'Вася',
-                    age: 20,
-                    job: 'coach'
-                },
-                {
-                    id: 2,
-                    name: 'Елена',
-                    age: 17,
-                    job: 'rest'
-                },
-                {
-                    id: 3,
-                    name: 'Пётр',
-                    age: 34,
-                    job: 'seller'
-                },
-                {
-                    id: 4,
-                    name: 'Ксюша',
-                    age: 25,
-                    job: 'Путешественник'
-                },
-                {
-                    id: 5,
-                    name: 'Оля',
-                    age: 21,
-                    job: 'teacher'
-                },
-            ]
+            persons: null,
         }
+    },
+
+    mounted() {
+        this.getPosts();
     },
 
     methods: {
-        sayHello() {
-            console.log('hello');
-        },
-        sayHi() {
-            console.log('hi');
+        getPosts() {
+            // '/persons' - роут, по которому прописан метод контроллера, который возвращает данные
+            axios.get('/persons')
+                // res - то, что вернётся с бэка
+                .then(res => {
+                    this.persons = res.data;
+                });
         }
     },
 
-    computed: {
-        personsAgeMoreTwenty() {
-            // с помощью filter пропускаем через callback типа как через foreach
-            return this.persons.filter((person) => {
-                // проверит значение age и вернёт только подходящие
-                return person.age > 20;
-            })
-        }
-    },
+    computed: {},
 
     components: {
         SinglePostComponent
@@ -67,7 +34,7 @@ export default {
 </script>
 
 <template>
-    <template v-for="person in personsAgeMoreTwenty">
+    <template v-for="person in persons">
         <div v-if="person.age > 20">
             <div>{{ person.name }}</div>
             <div>{{ person.age }}</div>
