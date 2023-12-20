@@ -17,6 +17,15 @@ export default {
         }
     },
 
+    methods: {
+        sayHello() {
+            console.log('hello');
+        },
+        sayHi() {
+            console.log('hi');
+        }
+    },
+
     components: {
         SinglePostComponent
     }
@@ -27,6 +36,8 @@ export default {
     <div>
         <single-post-component></single-post-component>
         <p>Name: {{ name }}</p>
+        <button onclick="sayHello">Hello</button>
+        <button @click="sayHi">Hi</button>
     </div>
 </template>
 
