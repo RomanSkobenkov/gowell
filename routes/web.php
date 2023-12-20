@@ -28,3 +28,7 @@ Route::get('/workers/update', [\App\Http\Controllers\WorkerController::class, 'u
 Route::get('/workers/delete', [\App\Http\Controllers\WorkerController::class, 'delete'])->name('worker.delete');
 
 Route::get('/workers/{worker}', [\App\Http\Controllers\WorkerController::class, 'show'])->name('worker.show');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
