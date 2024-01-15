@@ -1,5 +1,6 @@
 <script>
 import SinglePostComponent from "./SinglePostComponent.vue";
+import CreateComponent from "./CreateComponent.vue";
 
 export default {
     name: "PostComponent",
@@ -11,29 +12,22 @@ export default {
     },
 
     mounted() {
-        this.getPosts();
     },
 
     methods: {
-        getPosts() {
-            // '/persons' - роут, по которому прописан метод контроллера, который возвращает данные
-            axios.get('/persons')
-                // res - то, что вернётся с бэка
-                .then(res => {
-                    this.persons = res.data;
-                });
-        }
     },
 
     computed: {},
 
     components: {
-        SinglePostComponent
+        SinglePostComponent,
+        CreateComponent
     }
 }
 </script>
 
 <template>
+    <CreateComponent></CreateComponent>
     <template v-for="person in persons">
         <div v-if="person.age > 20">
             <div>{{ person.name }}</div>
