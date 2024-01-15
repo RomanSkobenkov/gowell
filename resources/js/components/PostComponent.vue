@@ -1,6 +1,6 @@
 <script>
-import SinglePostComponent from "./SinglePostComponent.vue";
 import CreateComponent from "./CreateComponent.vue";
+import IndexComponent from "./IndexComponent.vue";
 
 export default {
     name: "PostComponent",
@@ -20,14 +20,15 @@ export default {
     computed: {},
 
     components: {
-        SinglePostComponent,
-        CreateComponent
+        CreateComponent,
+        IndexComponent
     }
 }
 </script>
 
 <template>
     <CreateComponent></CreateComponent>
+    <IndexComponent></IndexComponent>
     <template v-for="person in persons">
         <div v-if="person.age > 20">
             <div>{{ person.name }}</div>
