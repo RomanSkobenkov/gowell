@@ -6,7 +6,11 @@ export default {
         return {
             people: null,
             // свойство для хранения текущей редактироуемой персоны
-            editPersonId: null
+            editPersonId: null,
+            // инициализируем значения для работы v-model
+            name: '',
+            age: null,
+            job: null
         }
     },
 
@@ -23,9 +27,23 @@ export default {
                 });
         },
 
+        updatePerson(id) {
+            this.editPersonId = null;
+            // данные передаём согласно названиям в UpdateRequest
+            axios.patch(`/api/people/${id}`, { name: this.name, age: this.age, job: this.job })
+                .then( res => {
+                    // пока примитивный способ обновить данные после успешного запроса
+                    this.getPeople();
+                });
+        },
+
         // переключение редактируемой персоны
-        changePersonEditId(id) {
+        // и обновление её данных
+        changePersonEditId(id, name, age, job) {
             this.editPersonId = id;
+            this.name = name;
+            this.age = age;
+            this.job = job;
         },
 
         // проверка, что текущий элемент - редактируемый (для отображения строки с полями редактирования)
@@ -51,20 +69,21 @@ export default {
             </thead>
             <tbody>
             <template v-for="person in people">
-                <tr>
+                <tr :class="isEdit(person.id) ? 'd-none' : ''">
                     <th scope="row">{{ person.id }}</th>
                     <td>{{ person.name }}</td>
                     <td>{{ person.age }}</td>
                     <td>{{ person.job }}</td>
-                    <td><a href="#" @click.prevent="changePersonEditId(person.id)" class="btn btn-success">Edit</a></td>
+                    <!-- передаём данные редактируемой персоны для работы v-model -->
+                    <td><a href="#" @click.prevent="changePersonEditId(person.id, person.name, person.age, person.job)" class="btn btn-success">Edit</a></td>
                 </tr>
                 <tr :class="isEdit(person.id) ? '' : 'd-none'">
                     <th scope="row">{{ person.id }}</th>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="number" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" v-model="name" class="form-control"></td>
+                    <td><input type="number" v-model="age" class="form-control"></td>
+                    <td><input type="text" v-model="job" class="form-control"></td>
                     <!-- передаём null для скрывания текущей строки редактирования -->
-                    <td><a href="#" @click.prevent="changePersonEditId(null)" class="btn btn-success">Update</a></td>
+                    <td><a href="#" @click.prevent="updatePerson(person.id)" class="btn btn-success">Update</a></td>
                 </tr>
             </template>
             </tbody>
