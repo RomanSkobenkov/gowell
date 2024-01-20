@@ -37,6 +37,15 @@ export default {
                 });
         },
 
+        deletePerson(id) {
+            // данные передаём согласно названиям в UpdateRequest
+            axios.delete(`/api/people/${id}`)
+                .then( res => {
+                    // пока примитивный способ обновить данные после успешного запроса
+                    this.getPeople();
+                });
+        },
+
         // переключение редактируемой персоны
         // и обновление её данных
         changePersonEditId(id, name, age, job) {
@@ -65,6 +74,7 @@ export default {
                 <th scope="col">Age</th>
                 <th scope="col">Job</th>
                 <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -76,6 +86,7 @@ export default {
                     <td>{{ person.job }}</td>
                     <!-- передаём данные редактируемой персоны для работы v-model -->
                     <td><a href="#" @click.prevent="changePersonEditId(person.id, person.name, person.age, person.job)" class="btn btn-success">Edit</a></td>
+                    <td><a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-danger">Delete</a></td>
                 </tr>
                 <tr :class="isEdit(person.id) ? '' : 'd-none'">
                     <th scope="row">{{ person.id }}</th>
