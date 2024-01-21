@@ -15,8 +15,8 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import PostComponent from "./components/PostComponent.vue";
-app.component('post-component', PostComponent);
+// import PostComponent from "./components/PostComponent.vue";
+// app.component('post-component', PostComponent);
 
 /**
  * The following block of code may be used to automatically register your
