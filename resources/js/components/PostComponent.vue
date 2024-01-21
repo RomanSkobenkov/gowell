@@ -8,6 +8,11 @@ export default {
     data() {
         return {
             persons: null,
+            obj: {
+                color: 'yellow',
+                number: 50,
+                isPublished: false,
+            }
         }
     },
 
@@ -32,7 +37,7 @@ export default {
 
 <template>
     <CreateComponent></CreateComponent>
-    <IndexComponent ref="index"></IndexComponent>
+    <IndexComponent ref="index" :obj="obj"></IndexComponent>
     <template v-for="person in persons">
         <div v-if="person.age > 20">
             <div>{{ person.name }}</div>

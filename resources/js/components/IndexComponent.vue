@@ -14,6 +14,10 @@ export default {
         }
     },
 
+    props: [
+        'obj'
+    ],
+
     // чтобы сразу получить данные
     mounted() {
         this.getPeople();
@@ -73,6 +77,9 @@ export default {
 </script>
 
 <template>
+    <div>Color: {{ obj.color }}</div>
+    <div>Number: {{ obj.number > 20 ? 'more 10' : 'less 10' }}</div>
+    <div>Is Published: {{ obj.isPublished ? 'Published' : 'Not Published' }}</div>
     <div>
         <table class="table">
             <thead>
