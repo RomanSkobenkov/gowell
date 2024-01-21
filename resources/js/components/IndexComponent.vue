@@ -1,9 +1,11 @@
 <script>
 import EditComponent from "./EditComponent.vue";
+import ShowComponent from "./ShowComponent.vue";
 export default {
     name: "IndexComponent",
 
     components: {
+        ShowComponent,
         EditComponent
     },
 
@@ -68,7 +70,6 @@ export default {
             // когда ключ сформирован динамически (через переменную), указывать его нужно через []
             // [0] - потому что Vue добавляет ещё структуру
             let fullEditName = this.$refs[editName][0];
-            console.log(this.$refs.edit_2[0]);
             fullEditName.name = name;
             fullEditName.age = age;
             fullEditName.job = job;
@@ -105,15 +106,7 @@ export default {
             </thead>
             <tbody>
             <template v-for="person in people">
-                <tr :class="isEdit(person.id) ? 'd-none' : ''">
-                    <th scope="row">{{ person.id }}</th>
-                    <td>{{ person.name }}</td>
-                    <td>{{ person.age }}</td>
-                    <td>{{ person.job }}</td>
-                    <!-- передаём данные редактируемой персоны для работы v-model -->
-                    <td><a href="#" @click.prevent="changePersonEditId(person.id, person.name, person.age, person.job)" class="btn btn-success">Edit</a></td>
-                    <td><a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-danger">Delete</a></td>
-                </tr>
+                <ShowComponent :person="person"></ShowComponent>
                 <EditComponent :person="person" :ref="`edit_${person.id}`"></EditComponent>
             </template>
             </tbody>
