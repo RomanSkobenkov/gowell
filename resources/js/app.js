@@ -6,14 +6,35 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import PostComponent from "./components/PostComponent.vue";
+import Index from "./components/Index.vue";
+import TagComponent from "./components/TagComponent.vue";
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
  */
+const router = createRouter({
+    // чтобы в SPA сохранялась история типа как в браузере
+    history: createWebHistory(),
 
-const app = createApp({});
+    // настройка роутов
+    // path - путь, component - vue компонент
+    routes: [
+        { path: '/posts', component: PostComponent },
+        { path: '/tags', component: TagComponent }
+    ]
+
+});
+
+const app = createApp({
+    components: {
+        Index
+    }
+});
+app.use(router);
 
 // import PostComponent from "./components/PostComponent.vue";
 // app.component('post-component', PostComponent);

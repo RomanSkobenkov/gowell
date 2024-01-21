@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::get('/workers', [\App\Http\Controllers\WorkerController::class, 'index'])->name('worker.index');
 
@@ -33,3 +33,6 @@ Route::get('/workers/{worker}', [\App\Http\Controllers\WorkerController::class, 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// за счёт такого where перехватим любой запрос с любой вложенностью
+Route::get('/{page}', App\Http\Controllers\IndexController::class)->where('page', '.*');
