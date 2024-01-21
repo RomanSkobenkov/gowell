@@ -17,6 +17,10 @@ export default {
     // чтобы сразу получить данные
     mounted() {
         this.getPeople();
+        this.$parent.parentLog();
+        // если бы создали компонент уровнем ещё ниже, то можно было бы и так:
+        // (не забыв импортировать и вызвать новый компонент)
+        // this.$parent.$parent.parentLog();
     },
 
     methods: {
@@ -59,6 +63,10 @@ export default {
         // в первый раз всегда вернёт false, потому что изначально в data editPersonId равен null
         isEdit(id) {
             return this.editPersonId === id;
+        },
+
+        indexLog() {
+            console.log('this is IndexComponent');
         }
     }
 }

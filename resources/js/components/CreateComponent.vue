@@ -10,6 +10,10 @@ export default {
         }
     },
 
+    mounted() {
+        this.$parent.$refs.index.indexLog();
+    },
+
     methods: {
         addPerson() {
             // т.к. роут определён в api.php, нужен префикс '/api/'

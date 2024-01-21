@@ -12,9 +12,13 @@ export default {
     },
 
     mounted() {
+        console.log(this.$refs.index.indexLog());
     },
 
     methods: {
+        parentLog() {
+            console.log('this is parent component');
+        }
     },
 
     computed: {},
@@ -28,7 +32,7 @@ export default {
 
 <template>
     <CreateComponent></CreateComponent>
-    <IndexComponent></IndexComponent>
+    <IndexComponent ref="index"></IndexComponent>
     <template v-for="person in persons">
         <div v-if="person.age > 20">
             <div>{{ person.name }}</div>
