@@ -1,6 +1,11 @@
 <script>
+import EditComponent from "./EditComponent.vue";
 export default {
     name: "IndexComponent",
+
+    components: {
+        EditComponent
+    },
 
     data() {
         return {
@@ -58,9 +63,15 @@ export default {
         // и обновление её данных
         changePersonEditId(id, name, age, job) {
             this.editPersonId = id;
-            this.name = name;
-            this.age = age;
-            this.job = job;
+            // чтобы взять конкретный ref, его название нужно сформировать динамически
+            let editName = `edit_${id}`;
+            // когда ключ сформирован динамически (через переменную), указывать его нужно через []
+            // [0] - потому что Vue добавляет ещё структуру
+            let fullEditName = this.$refs[editName][0];
+            console.log(this.$refs.edit_2[0]);
+            fullEditName.name = name;
+            fullEditName.age = age;
+            fullEditName.job = job;
         },
 
         // проверка, что текущий элемент - редактируемый (для отображения строки с полями редактирования)
@@ -103,14 +114,7 @@ export default {
                     <td><a href="#" @click.prevent="changePersonEditId(person.id, person.name, person.age, person.job)" class="btn btn-success">Edit</a></td>
                     <td><a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-danger">Delete</a></td>
                 </tr>
-                <tr :class="isEdit(person.id) ? '' : 'd-none'">
-                    <th scope="row">{{ person.id }}</th>
-                    <td><input type="text" v-model="name" class="form-control"></td>
-                    <td><input type="number" v-model="age" class="form-control"></td>
-                    <td><input type="text" v-model="job" class="form-control"></td>
-                    <!-- передаём null для скрывания текущей строки редактирования -->
-                    <td><a href="#" @click.prevent="updatePerson(person.id)" class="btn btn-success">Update</a></td>
-                </tr>
+                <EditComponent :person="person" :ref="`edit_${person.id}`"></EditComponent>
             </template>
             </tbody>
         </table>
