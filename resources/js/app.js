@@ -25,10 +25,14 @@ const router = createRouter({
             // подключение через динамичный импорт
             // path: '/people', component: () => {return import('./components/Person/Index.vue')},
             // т.к. у нас просто возврат в стрелочной функции, можно опустить {} и return:
-            // не забывать, что стрелочне функции не создают своего контекста (т.е. this)
+            // не забывать, что стрелочные функции не создают своего контекста (т.е. this)
             path: '/people', component: () => import('./components/Person/Index.vue'),
             // name типа как в Laravel
             name: 'person.index'
+        },
+        {
+            path: '/people/create', component: () => import('./components/Person/Create.vue'),
+            name: 'person.create'
         },
     ]
 
