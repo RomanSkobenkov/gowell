@@ -41,7 +41,7 @@ const router = createRouter({
             name: 'person.edit'
         },
         {
-            path: '/people/show', component: () => import('./components/Person/Show.vue'),
+            path: '/people/:id', component: () => import('./components/Person/Show.vue'),
             name: 'person.show'
         },
     ]
