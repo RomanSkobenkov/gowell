@@ -1,11 +1,13 @@
 <script>
 export default {
-    name: "PostComponent"
+    name: "Index"
 }
 </script>
 
 <template>
-    <div>Post Component</div>
+    <div>
+        Index
+    </div>
 </template>
 
 <style scoped>

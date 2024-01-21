@@ -7,9 +7,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import PostComponent from "./components/PostComponent.vue";
 import Index from "./components/Index.vue";
-import TagComponent from "./components/TagComponent.vue";
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -23,8 +21,15 @@ const router = createRouter({
     // настройка роутов
     // path - путь, component - vue компонент
     routes: [
-        { path: '/posts', component: PostComponent },
-        { path: '/tags', component: TagComponent }
+        {
+            // подключение через динамичный импорт
+            // path: '/people', component: () => {return import('./components/Person/Index.vue')},
+            // т.к. у нас просто возврат в стрелочной функции, можно опустить {} и return:
+            // не забывать, что стрелочне функции не создают своего контекста (т.е. this)
+            path: '/people', component: () => import('./components/Person/Index.vue'),
+            // name типа как в Laravel
+            name: 'person.index'
+        },
     ]
 
 });

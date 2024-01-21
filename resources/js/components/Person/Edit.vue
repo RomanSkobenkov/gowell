@@ -1,11 +1,13 @@
 <script>
 export default {
-    name: "TagComponent"
+    name: "Edit"
 }
 </script>
 
 <template>
-    <div>This is Tag Component</div>
+    <div>
+        Edit
+    </div>
 </template>
 
 <style scoped>
