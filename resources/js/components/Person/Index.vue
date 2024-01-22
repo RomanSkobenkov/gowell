@@ -19,7 +19,7 @@ export default {
         getPeople() {
             axios.get('/api/people')
                 .then(res => {
-                    this.people = res.data;
+                    this.people = res.data.data;
                 });
         },
 

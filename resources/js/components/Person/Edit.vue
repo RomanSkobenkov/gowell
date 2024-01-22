@@ -18,9 +18,9 @@ export default {
         getPerson() {
             axios.get(`/api/people/${this.$route.params.id}`)
                 .then(res => {
-                    this.name = res.data.name;
-                    this.age = res.data.age;
-                    this.job = res.data.job;
+                    this.name = res.data.data.name;
+                    this.age = res.data.data.age;
+                    this.job = res.data.data.job;
                 });
         },
 
@@ -29,8 +29,13 @@ export default {
                 .then(res => {
                     this.$router.push({name: 'person.show', params: {id: this.$route.params.id}});
                 });
-
         },
+    },
+
+    computed: {
+        isDisabled() {
+            return this.name && this.age && this.job;
+        }
     },
 }
 </script>
@@ -47,7 +52,7 @@ export default {
             <input type="text" v-model="job" placeholder="job" class="form-control">
         </div>
         <div class="mb-3">
-            <input @click.prevent="update" type="submit" value="Update" class="btn btn-primary">
+            <input :disabled="!isDisabled" @click.prevent="update" type="submit" value="Update" class="btn btn-primary">
         </div>
     </div>
 </template>

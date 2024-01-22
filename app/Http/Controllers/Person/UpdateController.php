@@ -10,8 +10,9 @@ use App\Http\Controllers\Controller;
 class UpdateController extends Controller
 {
     // не забывать про название переменной, именно $person (как в роутинге)
-    public function __invoke(UpdateRequest $request, Person $person): bool
+    public function __invoke(UpdateRequest $request, Person $person): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
     {
-        return $person->update($request->validated());
+        $person->update($request->validated());
+        return response([]);
     }
 }
