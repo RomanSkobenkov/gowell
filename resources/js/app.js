@@ -8,6 +8,14 @@ import './bootstrap';
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import Index from "./components/Index.vue";
+import {createStore} from "vuex";
+import Person from "./store/modules/person.js";
+
+const store = createStore({
+    modules: {
+        Person
+    }
+});
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -54,6 +62,7 @@ const app = createApp({
     }
 });
 app.use(router);
+app.use(store);
 
 // import PostComponent from "./components/PostComponent.vue";
 // app.component('post-component', PostComponent);
